@@ -22,7 +22,9 @@ cron.schedule('0 0 13 * * Sat,Mon,Wed', () =>{
          * * Inorder to book 2 days in advance and ensure when you are booking for monday
          */
 
-        const browser = await puppeteer.launch({headless:false});
+        const browser = await puppeteer.launch({
+            /* headless:false */
+        });
         /**
          * * Required for accepting the confirm message
          */
