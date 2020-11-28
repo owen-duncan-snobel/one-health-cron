@@ -11,17 +11,7 @@ const puppeteer = require('puppeteer');
  */
 cron.schedule('0 0 13 * * Sat,Mon,Wed', () =>{
     (async () => {
-
-        /**
-         * * Gets the current day of the week and will then handle error check for booking 2 days in advance
-         */
-        let today = await new Date().getDay();
-        const toBookDay = (today + 2) >= 7 ? (today + 2) - 7: today + 2;
         
-        /**
-         * * Inorder to book 2 days in advance and ensure when you are booking for monday
-         */
-
         const browser = await puppeteer.launch({
             /* headless:false */
         });
@@ -54,13 +44,6 @@ cron.schedule('0 0 13 * * Sat,Mon,Wed', () =>{
          * * Since you can book two days in advance and the weeks booking runs from SAT-SUN,
          * * you will need to move to the next weeks page when booking for a class that is ran on Sunday or Monday.
          */
-        if (today >= 5){
-            /**
-             * * Click the arror to 'Right Carat' to move to the next weeks bookings
-             */
-            await page.$eval('div.text-center.upper.date-options' , el => el.lastElementChild.click())
-            
-        }
 
         /**
          * * Might break for monday bookings since it will not appear at the top of the page ... 
